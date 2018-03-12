@@ -39,3 +39,34 @@ regressor.fit(X_train,Y_train) # we are making the model to learn the corelation
 
 #predicting the test set results
 Y_pred = regressor.predict(X_test)
+
+
+#building the optimal model using backward elimination
+
+import statsmodels.formula.api as sm
+# this doesn't consider const (b0 + b1*x1+ b2*x2+ b3*x3 +...) ie b0 so we have
+#to make it aware about this by(b0*x0 + b1*x1 + b2*x2 +...) x0=1
+#for this we add a column of all ones in our dataset.and we want this our ist column
+
+
+X = np.append(arr = np.ones((50,1)).astype(int),values=X,axis=1)
+X_opt = X[:,[0,1,2,3,4,5]]
+regressor_OLS = sm.OLS(endog=Y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:,[0,1,3,4,5]]
+regressor_OLS = sm.OLS(endog=Y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:,[0,3,4,5]]
+regressor_OLS = sm.OLS(endog=Y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:,[0,3,5]]
+regressor_OLS = sm.OLS(endog=Y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:,[0,3]]
+regressor_OLS = sm.OLS(endog=Y, exog=X_opt).fit()
+regressor_OLS.summary()
+
