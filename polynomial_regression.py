@@ -48,7 +48,7 @@ plt.show()
 #visuliazing the polynomial
 
 plt.scatter(X,Y,color='red')
-plt.plot(X,lin_reg2.predict(poly_reg.fit_transform(X)),color='blue')
+plt.plot(X,lin_reg2.predict(X_poly),color='blue')
 plt.title('Truth or bluff(polynomail)')
 plt.xlabel('salary')
 plt.ylabel('level')
